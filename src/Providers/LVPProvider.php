@@ -85,10 +85,10 @@ class LVPProvider extends \Illuminate\Support\ServiceProvider
                 });
             }
         }
-        if (!empty($this->panels)) {
-            app(LVPCurrentPanel::class)->boot();
-            // $current_panel = $this->panels['admin'];
-            // $current_panel->boot();
+        if (!empty($this->panels && $this->panels['admin'])) {
+            // app(LVPCurrentPanel::class)->boot();
+            $current_panel = $this->panels['admin'];
+            $current_panel->boot();
         }
     }
     protected function loadPanels()
