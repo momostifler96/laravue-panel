@@ -52,17 +52,17 @@ class CreatePanel extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        if (empty($name)) {
-            $name = $this->ask('Enter panel name :');
-        }
+
 
         $id = $this->option('id');
-
+        if ($id == 'same') {
+            $id = str($name)->kebab()->lower();
+        }
         $path = $this->getPath($name);
         $this->makeDirectory($path);
         $this->createResourceFile($name, $id, $path);
 
-        $this->info('LVP resource created successfully.');
+        $this->info('LVP panel created successfully.');
     }
 
     /**
