@@ -585,7 +585,7 @@ class Panel
 
             $this->dashboard->headerActions($this->dashboardHeaderActions());
             $this->dashboard->widgets($this->dashboardWidgets());
-            $this->dashboard->title($this->dashboardTitle());
+            // $this->dashboard->title($this->dashboardTitle());
 
             $this->makeRoutes();
         });

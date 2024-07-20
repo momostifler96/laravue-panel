@@ -27,18 +27,9 @@ class LVPProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot()
     {
-        // $cache_menu =  Cache::get('lvp-menus-MMMMM', []);
-        // dd();
+
         $this->loadPanels();
         $this->bootPanels();
-
-
-        // foreach ($this->panels as $key => $panel) {
-        //     // dd($panel::$instance);
-        //     $panel::$instance->setupNavMenus();
-        // }
-
-        // dd(Cache::get('lvp-menus-' . 'Admin', []));
     }
 
     protected function load()
@@ -94,11 +85,10 @@ class LVPProvider extends \Illuminate\Support\ServiceProvider
                 });
             }
         }
-
-        $current_panel = $this->panels['admin']; // dd(app(Panel::class));
-        // $current_panel->setup();
-        $current_panel->boot();
-        // dd($current_panel);
+        if (!empty($this->panels) && $this->panels['admin']) {
+            $current_panel = $this->panels['admin'];
+            $current_panel->boot();
+        }
     }
     protected function loadPanels()
     {
